@@ -30,6 +30,7 @@ import {
 } from './common-interfaces';
 import { Traderjoe } from '../connectors/traderjoe/traderjoe';
 import { Sushiswap } from '../connectors/sushiswap/sushiswap';
+import { SynFutures } from '../connectors/synfutures/synfutures';
 import { Near } from '../chains/near/near';
 import { Ref } from '../connectors/ref/ref';
 import { Xsswap } from '../connectors/xsswap/xsswap';
@@ -45,6 +46,8 @@ import { PancakeswapLP } from '../connectors/pancakeswap/pancakeswap.lp';
 import { XRPLCLOB } from '../connectors/xrpl/xrpl';
 import { QuipuSwap } from '../connectors/quipuswap/quipuswap';
 import { Carbonamm } from '../connectors/carbon/carbonAMM';
+import { Blast } from '../chains/blast/blast';
+import { SynFuturesLP } from '../connectors/synfutures/synfutures.lp';
 
 export type ChainUnion =
   | Algorand
@@ -132,6 +135,8 @@ export async function getChainInstance(
     connection = Near.getInstance(network);
   } else if (chain === 'binance-smart-chain') {
     connection = BinanceSmartChain.getInstance(network);
+  } else if (chain === 'blast') {
+    connection = Blast.getInstance(network);
   } else if (chain === 'xdc') {
     connection = Xdc.getInstance(network);
   } else if (chain === 'tezos') {
@@ -228,6 +233,16 @@ export async function getConnector<T>(
     connectorInstance = PancakeswapLP.getInstance(chain, network);
   } else if (connector === 'sushiswap') {
     connectorInstance = Sushiswap.getInstance(chain, network);
+  } else if (
+    (chain === 'blast' || chain === 'ethereum') &&
+    connector === 'synfutures'
+  ) {
+    connectorInstance = SynFutures.getInstance(chain, network);
+  } else if (
+    (chain === 'blast' || chain === 'ethereum') &&
+    connector === 'synfuturesLP'
+  ) {
+    connectorInstance = SynFuturesLP.getInstance(chain, network);
   } else if (chain === 'xdc' && connector === 'xsswap') {
     connectorInstance = Xsswap.getInstance(chain, network);
   } else if (chain === 'avalanche' && connector === 'dexalot') {

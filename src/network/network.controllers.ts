@@ -21,6 +21,7 @@ import {
 } from '../services/connection-manager';
 import { Osmosis } from '../chains/osmosis/osmosis';
 import { XRPL } from '../chains/xrpl/xrpl';
+import { Blast } from '../chains/blast/blast';
 
 export async function getStatus(
   req: StatusRequest
@@ -93,6 +94,11 @@ export async function getStatus(
     const bscConnections = BinanceSmartChain.getConnectedInstances();
     connections = connections.concat(
       bscConnections ? Object.values(bscConnections) : []
+    );
+
+    const blastConnections = Blast.getConnectedInstances();
+    connections = connections.concat(
+      blastConnections ? Object.values(blastConnections) : []
     );
 
     const tezosConnections = Tezos.getConnectedInstances();

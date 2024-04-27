@@ -24,6 +24,7 @@ import { KujiraConfig } from './kujira/kujira.config';
 import { QuipuswapConfig } from './quipuswap/quipuswap.config';
 import { OsmosisConfig } from '../chains/osmosis/osmosis.config';
 import { CarbonConfig } from './carbon/carbon.config';
+import { SynFuturesConfig } from './synfutures/synfutures.config';
 
 export namespace ConnectorsRoutes {
   export const router = Router();
@@ -33,6 +34,19 @@ export namespace ConnectorsRoutes {
     asyncHandler(async (_req, res: Response<ConnectorsResponse, {}>) => {
       res.status(200).json({
         connectors: [
+          {
+            name: 'synfutures',
+            trading_type: SynFuturesConfig.config.tradingTypes('swap'),
+            chain_type: SynFuturesConfig.config.chainType,
+            available_networks: SynFuturesConfig.config.availableNetworks,
+          },
+          {
+            name: 'synfuturesLP',
+            trading_type: SynFuturesConfig.config.tradingTypes('LP'),
+            chain_type: SynFuturesConfig.config.chainType,
+            available_networks: SynFuturesConfig.config.availableNetworks,
+            additional_spenders: ['synfutures'],
+          },
           {
             name: 'uniswap',
             trading_type: UniswapConfig.config.tradingTypes('swap'),

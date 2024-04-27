@@ -71,11 +71,11 @@ configurations:
   $namespace cosmos:
     configurationPath: cosmos.yml
     schemaPath: cosmos-schema.json
-  
+
   $namespace osmosis:
     configurationPath: osmosis.yml
     schemaPath: osmosis-schema.json
-    
+
   $namespace cronos:
     configurationPath: cronos.yml
     schemaPath: ethereum-schema.json
@@ -95,6 +95,14 @@ configurations:
   $namespace pancakeswap:
     configurationPath: pancakeswap.yml
     schemaPath: pancakeswap-schema.json
+
+  $namespace blast:
+    configurationPath: blast.yml
+    schemaPath: ethereum-schema.json
+
+  $namespace synfutures:
+    configurationPath: synfutures.yml
+    schemaPath: synfutures-schema.json
 
   $namespace xdc:
     configurationPath: xdc.yml
